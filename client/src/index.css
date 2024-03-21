@@ -8,7 +8,7 @@ html {
 
 @layer base {
   main {
-    @apply p-2 w-full h-full
+    @apply p-2 w-full h-full overflow-y-auto
   }
 
 }

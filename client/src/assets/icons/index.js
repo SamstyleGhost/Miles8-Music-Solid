@@ -3,6 +3,7 @@ import playlist from './music.svg';
 import plus from './plus.svg';
 import songs from './support.svg';
 import settings from './settings.svg';
+import extras from './ellypsis-vertical.svg';
 
 export {
   home,
@@ -10,4 +11,5 @@ export {
   plus,
   songs,
   settings,
+  extras
 }

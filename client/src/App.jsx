@@ -5,9 +5,9 @@ import { Sidebar, AudioPlayer } from "./components";
 
 const App = () => {
   return (
-    <div class="bg-background text-text flex overflow-hidden">
+    <div class="bg-background text-text flex">
       <Sidebar />
-      <div class="w-full h-full mr-2 overflow-y-auto">
+      <div class="w-full h-dvh mr-2 flex flex-col">
         <Router>
           <Route path='/' component={Home} />
           <Route path='/playlists' component={Playlists} />

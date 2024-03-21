@@ -1,4 +1,4 @@
-import { happy_now, starlight, safe_and_sound, way_down_we_go } from "./placeholders/playlists";
+import { happy_now, starlight, safe_and_sound, way_down_we_go } from "./../../assets/placeholders";
 
 const PlaylistCard = (props) => {
   return (
