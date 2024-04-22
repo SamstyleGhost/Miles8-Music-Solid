@@ -40,3 +40,20 @@ nav {
   background: #4e4e4e;
   border-radius: 25px;
 }
+
+.custom-slider {
+  height: 4px;
+  background: #2e2d2d;
+  opacity: 0.8;
+  outline: none;
+  transition: 0.3s;
+}
+
+.custom-slider:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.custom-slider[type="range"] {
+  accent-color: #fff;
+}
