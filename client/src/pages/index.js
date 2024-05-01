@@ -4,3 +4,4 @@ export { default as Playlist } from './Playlist.jsx';
 export { default as Songs } from './Songs.jsx';
 export { default as Upload } from './Upload.jsx';
 export { default as Settings } from './Settings.jsx';
+export { default as Login } from './Login.jsx';

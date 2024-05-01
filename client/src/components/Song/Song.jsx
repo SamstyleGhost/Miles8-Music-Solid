@@ -1,10 +1,17 @@
 import { extras } from "../../assets/icons";
 
-import { setCurrentSong } from "../../signals";
+import { setCurrentArtist, setCurrentSong, setCurrentTitle } from "../../signals";
 
 const Song = (props) => {
   return (
-    <div class="flex gap-4 p-2 items-center hover:bg-black/25 hover:cursor-pointer rounded-md" onClick={() => setCurrentSong(props.uuid)}>
+    <div 
+      class="flex gap-4 p-2 items-center hover:bg-black/25 hover:cursor-pointer rounded-md" 
+      onClick={() => {
+        setCurrentSong(props.uuid)
+        setCurrentTitle(props.songTitle)
+        setCurrentArtist(props.songArtists)
+      }}
+      >
       <div class="w-8 text-right font-light text-text/50 text-xs">{props.id}</div>
       <div class="w-full flex items-center">
         <div class="flex items-center gap-2 w-5/12">

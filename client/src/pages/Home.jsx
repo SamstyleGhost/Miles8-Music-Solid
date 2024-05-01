@@ -1,12 +1,16 @@
+import { useSearchParams } from "@solidjs/router";
+
 const Home = () => {
 
-  return (
-    <div>
-      <div>
-        Home
-      </div>
+  const search = useSearchParams();
+  console.log(search[0].code); 
 
-    </div>
+  
+
+  return (
+    <main class="h-full w-full flex justify-center items-center">
+      <div>Home</div>
+    </main>
   )
 };
 
