@@ -1,19 +1,37 @@
 import { createSignal, Show, For, createEffect } from "solid-js";
 import { extras } from "../../assets/icons";
 
-import { currentUser, setCurrentArtist, setCurrentSong, setCurrentTitle } from "../../signals";
+import { currentSong, currentUser, setCurrentArtist, setCurrentSong, setCurrentTitle } from "../../signals";
 
-const Song = (props) => {
+const SingleSong = (props) => {
 
   const [popup, setPopup] = createSignal(false);
-  
-  const addToLikedSongs = () => {
+  const [songData, setSongData] = createSignal([]);
 
-    fetch('https://owsaka4efb.execute-api.ap-south-1.amazonaws.com/Testing/songs/addToPlaylist', {
+  let id;
+  
+  createEffect(() => {
+
+    fetch('https://owsaka4efb.execute-api.ap-south-1.amazonaws.com/Testing/songs/getSong', {
       method: "POST",
       body: JSON.stringify({
-        username: currentUser(),
-        song: props.uuid
+        uuid: props.uuid
+      })
+    })
+    .then(async (res) => {
+      const response = await res.json();
+      const responseData = await JSON.parse(response.body.data);
+      setSongData(responseData);
+    })
+
+  })
+
+  const addToLikedSongs = () => {
+
+    fetch('https://owsaka4efb.execute-api.ap-south-1.amazonaws.com/Testing/songs/getSong', {
+      method: "POST",
+      body: JSON.stringify({
+        uuid: props.uuid
       })
     })
     .then((res) => {
@@ -37,6 +55,8 @@ const Song = (props) => {
     setPopup(false);
   }
 
+  
+
   return (
     <div 
       class="flex gap-4 p-2 items-center hover:bg-black/25 hover:cursor-pointer rounded-md" >
@@ -44,18 +64,18 @@ const Song = (props) => {
       <div class="w-full flex items-center relative">
         <div class="flex items-center gap-2 w-1/2">
           <div class="w-9 h-9">
-            <img src={`${import.meta.env.VITE_CLOUDFRONT_DISTRIBUTION_URL}/images/${props.uuid}.png`} alt={props.songTitle} class="object-cover w-full h-full rounded-sm" />
+            <img src={`${import.meta.env.VITE_CLOUDFRONT_DISTRIBUTION_URL}/images/${props.uuid}.png`} alt={songData()[0]?.songName} class="object-cover w-full h-full rounded-sm" />
           </div>
           <div class="flex flex-col gap-0.5 justify-center" onClick={() => {
               setCurrentSong(props.uuid)
-              setCurrentTitle(props.songTitle)
-              setCurrentArtist(props.songArtists)
+              setCurrentTitle(songData()[0]?.songName)
+              setCurrentArtist(songData()[0]?.artistName)
             }}>
-            <p class="truncate text-sm">{props.songTitle}</p>
-            <p class="text-xs text-text/80 truncate">{props.songArtists}</p>
+            <p class="truncate text-sm">{songData()[0]?.songName}</p>
+            <p class="text-xs text-text/80 truncate">{songData()[0]?.artistName}</p>
           </div>
         </div>
-        <div class="w-5/12 truncate text-sm">{props.songAlbum}</div>
+        <div class="w-5/12 truncate text-sm">{songData()[0]?.albumName}</div>
         <div class="w-1/12">
           <img src={extras} class="object-cover h-6" onClick={() => setPopup(!popup())} />
         </div>
@@ -70,4 +90,4 @@ const Song = (props) => {
   )
 };
 
-export default Song;
+export default SingleSong;

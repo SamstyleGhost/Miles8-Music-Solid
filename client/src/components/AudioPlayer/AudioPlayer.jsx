@@ -28,6 +28,7 @@ const AudioPlayer = () => {
     return <p class="text-sm">{min_time.toString().padStart(2,'0')}:{sec_time.toString().padStart(2,'0')}</p>
   };
 
+
   return (
     <div id="audio_player" class="sticky bottom-0 left-0 z-50 bg-background py-2">
       <div class="flex sidebar-background rounded-md w-full">

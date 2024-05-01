@@ -1,11 +1,12 @@
-import { useSearchParams } from "@solidjs/router";
+import { createEffect } from "solid-js";
+import { getUserData } from "../lib";
 
 const Home = () => {
 
-  const search = useSearchParams();
-  console.log(search[0].code); 
-
-  
+  createEffect(() => {
+    getUserData();
+    
+  })
 
   return (
     <main class="h-full w-full flex justify-center items-center">
