@@ -6,6 +6,8 @@ import { currentUser, setCurrentArtist, setCurrentSong, setCurrentTitle } from "
 const Song = (props) => {
 
   const [popup, setPopup] = createSignal(false);
+  const [playlistName, setPlaylistName] = createSignal('Hindi');
+  
   
   const addToLikedSongs = () => {
 
@@ -33,6 +35,26 @@ const Song = (props) => {
   }
 
   const addToPlaylist = () => {
+    fetch('https://owsaka4efb.execute-api.ap-south-1.amazonaws.com/Testing/songs/addToPlaylist', {
+      method: "POST",
+      body: JSON.stringify({
+        username: currentUser(),
+        song: props.uuid,
+        playlistName: playlistName()
+      })
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json(); // assuming the response is JSON
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 
     setPopup(false);
   }

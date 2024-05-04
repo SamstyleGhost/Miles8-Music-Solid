@@ -11,9 +11,6 @@ const Login = () => {
 
     const audio_player = document.getElementById('audio_player');
     audio_player.classList.add('hidden');
-
-    const topbar = document.getElementById('topbar');
-    topbar.classList.add('hidden');
   })
 
   // const location = useLocation();

@@ -1,6 +1,11 @@
+import { UploadComponent } from "../components";
+
 const Upload = () => {
+
   return (
-    <main>Upload</main>
+    <main class="h-full w-full flex justify-center items-center">
+      <UploadComponent />
+    </main>
   )
 };
 

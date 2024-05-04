@@ -21,7 +21,11 @@
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.565.0",
+    "@solid-primitives/upload": "^0.0.117",
     "@solidjs/router": "^0.13.1",
-    "solid-js": "^1.8.11"
+    "axios": "^1.6.8",
+    "lamejs": "^1.2.1",
+    "solid-js": "^1.8.11",
+    "uuid": "^9.0.1"
   }
 }
